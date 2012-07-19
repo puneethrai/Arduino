@@ -2,9 +2,9 @@
  *	Motors(M#) used 4 sensors(S#) used 6
  *
  *	M1(S1)								M2(S2)
- *
+ *	   \								/
  *		Back-(S5)Microcontroller(S6)-Top
- *
+ *	   /								\
  *	M3(S3)								M4(S4)
  *
  *	Kill Switch to be used to stop the quad copter immediatly-K1
@@ -138,7 +138,7 @@ void Landing()
 		MotorControl(1200,1200,1200,1200);
 		if(s5 pin is set)
 		{
-			MotorControl(1200,1200,1200,1200);
+			MotorControl(1200,1200,1200,1200);//Multiply with sensor's analog value so as to avoid below line
 			delay(200);//Avoid it
 			PowerOff();
 		}
