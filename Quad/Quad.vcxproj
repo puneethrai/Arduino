@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9B36F21F-7C2E-4A90-943C-4A6B74AF0D4D}</ProjectGuid>
+    <RootNamespace>Quad</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\Users\gangathara rai\Documents\Visual Studio 2010\arduino-1.0.1\hardware\arduino\cores\arduino;C:\Users\gangathara rai\Documents\Visual Studio 2010\arduino-1.0.1\hardware\arduino\variants\mega;c:\users\gangathara rai\documents\visual studio 2010\arduino-1.0.1\hardware\tools\avr\avr\include\;c:\users\gangathara rai\documents\visual studio 2010\arduino-1.0.1\hardware\tools\avr\avr\include\avr\;c:\users\gangathara rai\documents\visual studio 2010\arduino-1.0.1\hardware\tools\avr\avr\;c:\users\gangathara rai\documents\visual studio 2010\arduino-1.0.1\hardware\tools\avr\lib\gcc\avr\4.3.2\include\;C:\Users\gangathara rai\Documents\Visual Studio 2010\arduino-1.0.1\libraries\Servo;C:\Users\gangathara rai\Documents\Visual Studio 2010\arduino-1.0.1\libraries\Servo\utility;</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>C:\Users\gangathara rai\Documents\Visual Studio 2010\arduino-1.0.1\hardware\arduino\cores\arduino;C:\Users\gangathara rai\Documents\Visual Studio 2010\arduino-1.0.1\hardware\arduino\variants\mega;c:\users\gangathara rai\documents\visual studio 2010\arduino-1.0.1\hardware\tools\avr\avr\include\;c:\users\gangathara rai\documents\visual studio 2010\arduino-1.0.1\hardware\tools\avr\avr\include\avr\;c:\users\gangathara rai\documents\visual studio 2010\arduino-1.0.1\hardware\tools\avr\avr\;c:\users\gangathara rai\documents\visual studio 2010\arduino-1.0.1\hardware\tools\avr\lib\gcc\avr\4.3.2\include\;C:\Users\gangathara rai\Documents\Visual Studio 2010\arduino-1.0.1\libraries\Servo;C:\Users\gangathara rai\Documents\Visual Studio 2010\arduino-1.0.1\libraries\Servo\utility;</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="Quad.pde" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include=".Quad.vsarduino.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties arduino.board.name="mega" arduino.board.desc="Arduino Mega (ATmega1280)" arduino.board.property_bag="mega.name=Arduino Mega (ATmega1280)&#xD;&#xA;mega.upload.protocol=arduino&#xD;&#xA;mega.upload.maximum_size=126976&#xD;&#xA;mega.upload.speed=57600&#xD;&#xA;mega.bootloader.low_fuses=0xFF&#xD;&#xA;mega.bootloader.high_fuses=0xDA&#xD;&#xA;mega.bootloader.extended_fuses=0xF5&#xD;&#xA;mega.bootloader.path=atmega&#xD;&#xA;mega.bootloader.file=ATmegaBOOT_168_atmega1280.hex&#xD;&#xA;mega.bootloader.unlock_bits=0x3F&#xD;&#xA;mega.bootloader.lock_bits=0x0F&#xD;&#xA;mega.build.mcu=atmega1280&#xD;&#xA;mega.build.f_cpu=16000000L&#xD;&#xA;mega.build.core=arduino&#xD;&#xA;mega.build.variant=mega&#xD;&#xA;" arduino.build.mcu="atmega1280" arduino.build.f_cpu="16000000L" arduino.build.core="arduino" arduino.upload.protocol="arduino" arduino.upload.speed="57600" arduino.upload.maximum_size="126976" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

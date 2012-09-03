@@ -1,0 +1,8 @@
+<VisualMicro>
+  <Program Name="Quad" Ext=".pde" Location="C:\Users\gangathara rai\Documents\GitHub\Arduino\Quad" IncludeDebugInformation="0">
+    <Compile IsCompiled="0" CompilerErrors="0" StopOnError="False" OptimiseLibs="True" OptimiseCore="True" BuildPath="C:\Users\gangathara rai\AppData\Local\VMicro\Arduino\Builds\Quad\mega" />
+    <Platform Name="Arduino">
+      <Board Name="mega" Description="Arduino Mega (ATmega1280)" CoreFolder="C:\Users\gangathara rai\Documents\Visual Studio 2010\arduino-1.0.1\hardware\arduino\cores\arduino" VariantFullPath="C:\Users\gangathara rai\Documents\Visual Studio 2010\arduino-1.0.1\hardware\arduino\variants\mega" />
+    </Platform>
+  </Program>
+</VisualMicro>

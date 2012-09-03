@@ -13,8 +13,20 @@
  */
 #include <Servo.h>
 
-Servo Motor;
-
+Servo Motor1,Motor2,Motor3,Motor4;
+int CutOff=25;
+int XLevelValue = 400;
+int YLevelValue = 400;
+int XMaxValue = 600,YMaxValue = 600;
+int XMinValue = 200,YMinValue = 200;
+int LevelMargin = 50;
+int M1 = 1000,M2 = 1000,M3 = 1000,M4 = 1000;
+int M1Pin = 7,M2Pin = 8,M3Pin = 9,M4Pin = 10;
+int ProximityPin = 11;
+int AccelorometerXPin = 12, AccelorometerYPin = 13;
+int KillSwitchPin = 14;
+int ProximityMin = 10,ProximityMax = 100;
+bool ToAscend = true;
 void setup()
 {
 
@@ -27,9 +39,9 @@ void setup()
 	// for write. I assumed the standard range from 1000 to 2000
 	// microseconds.
 	Motor1.attach(7, 1000, 2000);
-	Motor2.attach(7, 1000, 2000);//PLEASE FILL APPROPRIATE PIN NO
-	Motor3.attach(7, 1000, 2000);
-	Motor4.attach(7, 1000, 2000);
+	Motor2.attach(8, 1000, 2000);//PLEASE FILL APPROPRIATE PIN NO
+	Motor3.attach(9, 1000, 2000);
+	Motor4.attach(10, 1000, 2000);
 	//PLEASE WRITE THE ATTACH LOGIC FOR KILL SWITCH , SENSORS & ACCELOROMETER
 	// Wait for beep from ESC
 	delay(10000);
@@ -39,16 +51,94 @@ void setup()
 	// Wait for beep from ESC
 	delay(10000);
 
-}
+	pinMode(ProximityPin,INPUT);
+	pinMode(AccelorometerXPin,INPUT);
+	pinMode(AccelorometerYPin,INPUT);
+	pinMode(KillSwitchPin,INPUT);
 
+}
+//Yet to implement
+bool isCutOff(int x, int y)
+{
+	bool flag = false;
+	if(x<(XLevelValue-CutOff));
+}
+void Stability(int x ,int y)
+{
+	if(x>XLevelValue && (y>(YLevelValue-LevelMargin) || y<(YLevelValue+LevelMargin)))
+		MotorControl(++M1,++M2,--M3,--M4);
+	if(x<XLevelValue && (y>(YLevelValue-LevelMargin) || y<(YLevelValue+LevelMargin)))
+		MotorControl(--M1,--M2,++M3,++M4);
+	if(y>YLevelValue && (x>(XLevelValue-LevelMargin) || x<(XLevelValue+LevelMargin)))
+		MotorControl(++M1,--M2,--M3,++M4);
+	if(y<YLevelValue && (x>(XLevelValue-LevelMargin) || x<(XLevelValue+LevelMargin)))
+		MotorControl(--M1,++M2,++M3,--M4);
+	if((x>XMinValue||x<(XLevelValue-LevelMargin)) && (y<(YLevelValue-LevelMargin)||y>YMinValue))
+		MotorControl(--M1,--M2,++M3,--M4);
+	if((x>XMinValue||x<(XLevelValue-LevelMargin)) && (y>(YLevelValue+LevelMargin)||y<YMaxValue))
+		MotorControl(--M1,--M2,--M3,++M4);
+	if((x<XMaxValue||x>(XLevelValue+LevelMargin)) && (y<(YLevelValue-LevelMargin)||y>YMinValue))
+		MotorControl(--M1,++M2,--M3,--M4);
+	if((x<XMaxValue||x>(XLevelValue+LevelMargin)) && (y>(YLevelValue+LevelMargin)||y<YMaxValue))
+		MotorControl(++M1,--M2,--M3,--M4);
+}
+void Ascend()
+{
+	M1=(M1>=1950)?1950:M1++;
+	M2=(M2>=1950)?1950:M2++;
+	M3=(M3>=1950)?1950:M3++;
+	M4=(M4>=1950)?1950:M4++;
+	MotorControl(M1,M2,M3,M4);
+}
+void Decend()
+{
+	M1=(M1<=1050)?1050:M1--;
+	M2=(M2<=1050)?1050:M2--;
+	M3=(M3<=1050)?1050:M3--;
+	M4=(M4<=1050)?1050:M4--;
+	MotorControl(M1,M2,M3,M4);
+}
 void loop()
 {
+	
+	/*
 	if(Init())
 	{
 		LiftOff();
 		Landing();
 	}
-	while(1);
+	*/
+	if(digitalRead(KillSwitchPin)==1)
+	{
+		PowerOff();
+		M1=1000;M2=1000;M3=1000;M4=1000;
+		while(1);
+	}
+	else if(ToAscend)
+	{
+		Stability(analogRead(AccelorometerXPin),analogRead(AccelorometerXPin));
+		Ascend();
+		if(analogRead(ProximityPin)<=ProximityMin)
+		{
+			ToAscend = false;
+		}
+	}
+	else if(!ToAscend)
+	{
+		Stability(analogRead(AccelorometerXPin),analogRead(AccelorometerXPin));
+		Decend();
+		if(analogRead(ProximityPin)>=ProximityMax)
+		{
+			ToAscend = true;
+		}
+	}
+	else
+	{
+		PowerOff();
+		M1=1000;M2=1000;M3=1000;M4=1000;
+		while(1);
+	}
+	
 } 
 int Init()
 {
