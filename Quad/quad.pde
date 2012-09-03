@@ -38,10 +38,10 @@ void setup()
 	// minimum and maximum, you will be able to use the degrees
 	// for write. I assumed the standard range from 1000 to 2000
 	// microseconds.
-	Motor1.attach(7, 1000, 2000);
-	Motor2.attach(8, 1000, 2000);//PLEASE FILL APPROPRIATE PIN NO
-	Motor3.attach(9, 1000, 2000);
-	Motor4.attach(10, 1000, 2000);
+	Motor1.attach(M1Pin, 1000, 2000);
+	Motor2.attach(M2Pin, 1000, 2000);//PLEASE FILL APPROPRIATE PIN NO
+	Motor3.attach(M3Pin, 1000, 2000);
+	Motor4.attach(M4Pin, 1000, 2000);
 	//PLEASE WRITE THE ATTACH LOGIC FOR KILL SWITCH , SENSORS & ACCELOROMETER
 	// Wait for beep from ESC
 	delay(10000);

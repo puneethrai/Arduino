@@ -66,6 +66,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="Quad.pde" />
+    <None Include="TODO.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".Quad.vsarduino.h" />
