@@ -20,7 +20,7 @@ int YLevelValue = 400;
 int XMaxValue = 600,YMaxValue = 600;
 int XMinValue = 200,YMinValue = 200;
 int LevelMargin = 50;
-int M1 = 1000,M2 = 1000,M3 = 1000,M4 = 1000;
+int M1 = 1300,M2 = 1300,M3 = 1300,M4 = 1300;
 int M1Pin = 7,M2Pin = 8,M3Pin = 9,M4Pin = 10;
 int ProximityPin = 11;
 int AccelorometerXPin = 12, AccelorometerYPin = 13;
@@ -29,7 +29,7 @@ int ProximityMin = 10,ProximityMax = 100;
 bool ToAscend = true;
 void setup()
 {
-
+	
 	// Set first the position to prevent the servo to move to the middle
 	// position at initialisation
 	MotorControl(2000,2000,2000,2000);// Full power
