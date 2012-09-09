@@ -15,18 +15,18 @@
 
 Servo Motor1,Motor2,Motor3,Motor4;
 int CutOff=25;
-int XLevelValue = 400;
+int XLevelValue = 400;//Will be assigned during run time
 int YLevelValue = 400;
 int XMaxValue = 600,YMaxValue = 600;
 int XMinValue = 200,YMinValue = 200;
 int LevelMargin = 50;
-int M1 = 1300,M2 = 1300,M3 = 1300,M4 = 1300;
+int M1 = 1300,M2 = 1300,M3 = 1300,M4 = 1300,IncDecVal = 5;
 int M1Pin = 7,M2Pin = 8,M3Pin = 9,M4Pin = 10;
 int ProximityPin = 11;
 int AccelorometerXPin = 12, AccelorometerYPin = 13;
 int KillSwitchPin = 14;
-int ProximityMin = 10,ProximityMax = 100;
-bool ToAscend = true;
+int ProximityMin = 10,ProximityMax = 100,XAxis,YAxis;
+bool ToAscend = true ,ReadInitial = false;
 void setup()
 {
 	
@@ -84,30 +84,32 @@ void Stability(int x ,int y)
 }
 void Ascend()
 {
-	M1=(M1>=1950)?1950:M1++;
-	M2=(M2>=1950)?1950:M2++;
-	M3=(M3>=1950)?1950:M3++;
-	M4=(M4>=1950)?1950:M4++;
+	M1=(M1>=1950)?1950:M1+IncDecVal;
+	M2=(M2>=1950)?1950:M2+IncDecVal;
+	M3=(M3>=1950)?1950:M3+IncDecVal;
+	M4=(M4>=1950)?1950:M4+IncDecVal;
 	MotorControl(M1,M2,M3,M4);
 }
 void Decend()
 {
-	M1=(M1<=1050)?1050:M1--;
-	M2=(M2<=1050)?1050:M2--;
-	M3=(M3<=1050)?1050:M3--;
-	M4=(M4<=1050)?1050:M4--;
+	M1=(M1<=1050)?1050:M1-IncDecVal;
+	M2=(M2<=1050)?1050:M2-IncDecVal;
+	M3=(M3<=1050)?1050:M3-IncDecVal;
+	M4=(M4<=1050)?1050:M4-IncDecVal;
 	MotorControl(M1,M2,M3,M4);
 }
 void loop()
 {
+	XAxis = analogRead(AccelorometerXPin);
+	YAxis = analogRead(AccelorometerYPin);
 	
-	/*
-	if(Init())
+	if(!ReadInitial)
 	{
-		LiftOff();
-		Landing();
+		XLevelValue = XAxis;
+		YLevelValue = YAxis;
+		ReadInitial = true;
 	}
-	*/
+	Stability(XAxis,YAxis);
 	if(digitalRead(KillSwitchPin)==1)
 	{
 		PowerOff();
@@ -116,7 +118,7 @@ void loop()
 	}
 	else if(ToAscend)
 	{
-		Stability(analogRead(AccelorometerXPin),analogRead(AccelorometerXPin));
+		
 		Ascend();
 		if(analogRead(ProximityPin)<=ProximityMin)
 		{
@@ -125,7 +127,6 @@ void loop()
 	}
 	else if(!ToAscend)
 	{
-		Stability(analogRead(AccelorometerXPin),analogRead(AccelorometerXPin));
 		Decend();
 		if(analogRead(ProximityPin)>=ProximityMax)
 		{
@@ -140,6 +141,7 @@ void loop()
 	}
 	
 } 
+/*
 int Init()
 {
 	bool go = false;
@@ -167,7 +169,7 @@ int Init()
 	{
 		return 0;
 	}
-}
+}*/
 void PowerOff()
 {
 	MotorControl(1000,1000,1000,1000);// Power off
@@ -199,6 +201,7 @@ void EagleView()
 {
 	MotorControl(1500,1500,1500,1500);//Values Should be such that Quad must be stable in air
 }
+/*
 void LiftOff()
 {
 	bool go = false;
@@ -233,4 +236,4 @@ void Landing()
 			PowerOff();
 		}
 	}
-}
+}*/

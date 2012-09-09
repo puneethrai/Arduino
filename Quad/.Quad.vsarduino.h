@@ -14,7 +14,6 @@ void Stability(int x ,int y);
 void Ascend();
 void Decend();
 void loop();
-int Init();
 void PowerOff();
 void MotorControl(int m1,int m2,int m3,int m4);
 void Forward();
@@ -22,8 +21,6 @@ void Reverse();
 void Left();
 void Right();
 void EagleView();
-void LiftOff();
-void Landing();
 
 #include "C:\Users\gangathara rai\Documents\Visual Studio 2010\arduino-1.0.1\hardware\arduino\variants\mega\pins_arduino.h" 
 #include "C:\Users\gangathara rai\Documents\Visual Studio 2010\arduino-1.0.1\hardware\arduino\cores\arduino\Arduino.h"
